@@ -1,0 +1,14 @@
+<?php $this->headTitle('尼玛，这个标题是我重写的','SET'); ?>
+
+<?php $this->headStyle()->captureStart() ?>
+body{
+    background:#eee;
+}
+<?php $this->headStyle()->captureEnd() ?>
+
+<?php $this->headScript()->captureStart() ?>
+console.log('this is script in view');
+<?php $this->headScript()->captureEnd() ?>
+<div>
+    <?php echo $this->partial('partialLoop.phtml',$this->article) ?>
+</div>

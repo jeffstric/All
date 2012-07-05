@@ -53,8 +53,26 @@ class View_IndexController extends Zend_Controller_Action
         echo $rendered;
     }
 
+    public function partialTestAction()
+    {
+        // action body
+        $article  =  new Application_Model_Article();
+        $this->view->article = $article->fetchRow();
+    }
+
+    public function partialTestTwoAction()
+    {
+        // action body
+        $article  =  new Application_Model_Article();
+        $this->view->articles = $article->fetchAll();
+    }
+
 
 }
+
+
+
+
 
 
 
