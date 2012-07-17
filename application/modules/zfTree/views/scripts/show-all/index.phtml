@@ -1,0 +1,34 @@
+<?php 
+$this->headScript() ->appendFile('/javascript/jQueryTree/ztree.js');
+$this->headLink()->appendStylesheet('/styles/jQueryTree/zTreeStyle.css');
+?>
+<?php $this->headScript()->captureStart() ?>
+ var zTreeObj;
+   var setting = {
+        view:{
+                dblClickExpand: false,
+                showLine: true,
+                selectedMulti: false 
+        },
+        data: {
+		simpleData: {
+			enable: true,
+			idKey: "id",
+			pIdKey: "pId",
+			rootPId: 0,
+		}
+	},
+        callback:{
+                beforeClick:function(treeId, treeNode, clickFlag) {
+                    console.log(treeNode.id);
+                }
+        }
+   };
+   var data = <?php echo json_encode($this->categories) ?>;
+   
+   $(document).ready(function(){
+      zTreeObj = $.fn.zTree.init($("#treeDemo"), setting,data);
+   });
+<?php $this->headScript()->captureEnd() ?>
+
+   <ul id="treeDemo" class="ztree"></ul>

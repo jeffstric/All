@@ -1,0 +1,40 @@
+<?php 
+$this->headScript() ->appendFile('/javascript/jQueryTree/ztree.js');
+$this->headLink()->appendStylesheet('/styles/jQueryTree/zTreeStyle.css');
+?>
+<?php $this->headScript()->captureStart() ?>
+ var zTreeObj;
+   var setting = {
+        view:{
+                dblClickExpand: false,
+                showLine: true,
+                selectedMulti: false, 
+        },
+        async: {
+		enable: true,
+		url: "http://127.0.0.31/zfTree/index/get-node",
+                dataType: "json",
+                autoParam:["id"],
+                otherParam:{"id":"0"},
+                type: "post"
+	},
+        callback:{
+                beforeClick:function(treeId, treeNode, clickFlag) {
+                    console.log(treeNode.id);
+                },
+                onAsyncSuccess: function(event, treeId, treeNode, msg) {
+                    console.log('加载成功');
+                    console.log(msg);
+                },
+                onAsyncError: function(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
+                    console.log('加载失败');
+                    console.log(XMLHttpRequest);
+                }
+        }
+   };
+   
+   $(document).ready(function(){
+      zTreeObj = $.fn.zTree.init($("#treeDemo"), setting);
+   });
+<?php $this->headScript()->captureEnd() ?>
+<ul id="treeDemo" class="ztree"></ul>
