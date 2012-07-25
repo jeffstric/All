@@ -37,5 +37,18 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         
         
     }
+    
+    protected function _initAutoloader()
+    {
+        $autoloader = Zend_Loader_Autoloader::getInstance();
+        $autoloader->registerNamespace('My_');
+    }
+    
+    protected function _initFirePhp()
+    {
+        $logger = new My_Log_FirePhpLog();
+        $logger->setEnable(true);
+        Zend_Registry::set('FD',$logger);
+    }
 }
 

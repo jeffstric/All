@@ -1,0 +1,18 @@
+<br /><br />
+<div id="view-content">
+    <div id="error">
+        <?php
+        $errors = $this->form->getErrorMessages();
+        if($errors){
+            echo '<ul>';
+            foreach($errors as $value){
+                echo <<<EOE
+                <li>$value</li>
+EOE;
+            }
+            echo '</ul>';
+        }
+        ?>
+    </div>
+    <?php echo $this->form ?>
+</div>
